@@ -15,6 +15,7 @@ import listingRoutes from "./routes/listing.routes.js";
 const allowedOrigins = [
   "http://localhost:5173",
   "https://home-linker-2.vercel.app",
+  "https://home-linker-1-l0i2u9sii-marryam-abids-projects.vercel.app",
 ];
 app.use(
   cors({
