@@ -111,7 +111,7 @@ export default function EditListing() {
       setError(false);
 
       const response = await fetch(
-        `${API_URL}/api/listing/update/${listingId}`,
+        `${API_URL}api/listing/update/${listingId}`,
         {
           method: "POST",
           headers: {
@@ -141,12 +141,9 @@ export default function EditListing() {
   };
   const fetchListing = async () => {
     try {
-      const res = await fetch(
-        `${API_URL}/api/listing/getListing/${listingId}`,
-        {
-          credentials: "include",
-        }
-      );
+      const res = await fetch(`${API_URL}api/listing/getListing/${listingId}`, {
+        credentials: "include",
+      });
       const data = await res.json();
       if (!res.ok) {
         console.log(data.message || "Failed to fetch listing");

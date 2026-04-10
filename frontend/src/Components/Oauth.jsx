@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { signInSuccess } from "../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
 export default function Oauth() {
+  const API_URL = import.meta.env.VITE_BACKEND_API_URL;
   const navigate = useNavigate(); // Hook to navigate programmatically
   const dispatch = useDispatch(); // Hook to access the Redux store
   async function handleGoogleClick() {
@@ -15,7 +16,7 @@ export default function Oauth() {
       const result = await signInWithPopup(auth, provider);
 
       const res = await axios.post(
-        "http://localhost:3000/api/auth/google",
+        `${API_URL}api/auth/google`,
         {
           username: result.user.displayName,
           email: result.user.email,

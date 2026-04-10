@@ -16,13 +16,13 @@ export default function Home() {
     const fetchAllListings = async () => {
       try {
         const [offerRes, rentRes, saleRes] = await Promise.all([
-          fetch(`${API_URL}/api/listing/search?offer=true&limit=3`, {
+          fetch(`${API_URL}api/listing/search?offer=true&limit=3`, {
             credentials: "include",
           }),
-          fetch(`${API_URL}/api/listing/search?type=rent&limit=3`, {
+          fetch(`${API_URL}api/listing/search?type=rent&limit=3`, {
             credentials: "include",
           }),
-          fetch(`${API_URL}/api/listing/search?type=sale&limit=3`, {
+          fetch(`${API_URL}api/listing/search?type=sale&limit=3`, {
             credentials: "include",
           }),
         ]);

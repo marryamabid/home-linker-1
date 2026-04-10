@@ -76,7 +76,7 @@ export default function Profile() {
     try {
       dispatch(updateUserStart());
 
-      const res = await fetch(`${API_URL}/api/user/update/${currentUser._id}`, {
+      const res = await fetch(`${API_URL}api/user/update/${currentUser._id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +110,7 @@ export default function Profile() {
   const handleUserDelete = async () => {
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`${API_URL}/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${API_URL}api/user/delete/${currentUser._id}`, {
         method: "DELETE",
         credentials: "include", // include cookies for auth
       });
@@ -128,7 +128,7 @@ export default function Profile() {
   const handleSignOut = async () => {
     try {
       dispatch(signoutUserStart());
-      const res = await fetch(`${API_URL}/api/auth/signout`, {
+      const res = await fetch(`${API_URL}api/auth/signout`, {
         credentials: "include",
       });
       const data = await res.json();
@@ -149,7 +149,7 @@ export default function Profile() {
       try {
         setShowListingError(false);
         const res = await fetch(
-          `${API_URL}/api/user/listings/${currentUser._id}`,
+          `${API_URL}api/user/listings/${currentUser._id}`,
           {
             credentials: "include", // send cookies
           }
@@ -179,7 +179,7 @@ export default function Profile() {
     try {
       setShowListingError(false);
       const res = await fetch(
-        `${API_URL}/api/user/listings/${currentUser._id}`,
+        `${API_URL}api/user/listings/${currentUser._id}`,
         {
           credentials: "include",
         }
@@ -200,7 +200,7 @@ export default function Profile() {
   };
   const deleteUserListing = async (listingId) => {
     try {
-      const res = await fetch(`${API_URL}/api/listing/delete/${listingId}`, {
+      const res = await fetch(`${API_URL}api/listing/delete/${listingId}`, {
         method: "DELETE",
         credentials: "include",
       });

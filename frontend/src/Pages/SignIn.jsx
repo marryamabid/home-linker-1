@@ -27,7 +27,7 @@ export default function SignIp() {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await fetch(`${API_URL}/api/auth/signin`, {
+      const res = await fetch(`${API_URL}api/auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

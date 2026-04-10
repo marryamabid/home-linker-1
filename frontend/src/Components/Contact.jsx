@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Contact({ listing }) {
+  const API_URL = import.meta.env.VITE_BACKEND_API_URL;
   const [landlord, setLandlord] = useState(null);
   const [message, setMessage] = useState("");
   const onChange = (e) => {
@@ -11,7 +12,7 @@ export default function Contact({ listing }) {
   useEffect(() => {
     const fetchLandlord = async () => {
       try {
-        const res = await fetch(`/api/user/${listing.userRef}`);
+        const res = await fetch(`${API_URL}api/user/${listing.userRef}`);
         const data = await res.json();
         setLandlord(data);
       } catch (error) {
@@ -19,7 +20,7 @@ export default function Contact({ listing }) {
       }
     };
     fetchLandlord();
-  }, [listing.userRef]);
+  }, [listing.userRef, API_URL]);
   return (
     <>
       {landlord && (

@@ -109,7 +109,7 @@ export default function CreateListing() {
       setLoading(true);
       setError(false);
 
-      const response = await fetch(`${API_URL}/api/listing/create`, {
+      const response = await fetch(`${API_URL}api/listing/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
