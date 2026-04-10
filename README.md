@@ -94,10 +94,10 @@ HomeLinker/
 
 ⚙️ Setup & Installation
 1️⃣ Clone Repositories
-git clone https://github.com/marryamabid/frontend-realestate.git
-git clone https://github.com/marryamabid/backend-realestate.git
+git clone https://github.com/marryamabid/home-linker-1.git
+
 2️⃣ Setup Backend
-cd backend-realestate
+cd backend
 npm install
 
 Create a .env file:
@@ -110,7 +110,7 @@ Run backend:
 
 npm run dev
 3️⃣ Setup Frontend
-cd frontend-realestate
+cd frontend
 npm install
 npm run dev
 📡 API Overview
