@@ -13,10 +13,10 @@ It combines a **modern React frontend** with a **scalable Node.js backend**, fol
 ## 🌐 Live Demo
 
 - 🔗 **Frontend (Netlify)**  
-  https://classy-creponne-f6e3ff.netlify.app/
+  https://homelinkernew.netlify.app,
 
 - ⚙️ **Backend API (Vercel)**  
-  https://backend-realestate-ubz6.vercel.app/
+  https://home-linker-1.vercel.app/
 
 ---
 
