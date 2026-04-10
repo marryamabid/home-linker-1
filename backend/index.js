@@ -15,7 +15,7 @@ import listingRoutes from "./routes/listing.routes.js";
 const allowedOrigins = [
   "http://localhost:5173",
   "https://homelinker2.netlify.app",
-  "https://home-linker-1.vercel.app",
+  "https://home-linker-1-dhzfz82kk-marryam-abids-projects.vercel.app",
 ];
 app.use(
   cors({
