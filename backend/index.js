@@ -12,14 +12,10 @@ import userRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import listingRoutes from "./routes/listing.routes.js";
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://homelinker2.netlify.app",
-  "https://home-linker-1-dhzfz82kk-marryam-abids-projects.vercel.app",
-];
+const allowedOrigins = ["http://localhost:5173"];
 app.use(
   cors({
-    origin: allowedOrigins, // allow all origins
+    origin: allowedOrigins, // allow origins
     credentials: true, // cannot use `true` with "*"
   })
 );
