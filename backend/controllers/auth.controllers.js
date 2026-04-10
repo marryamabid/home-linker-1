@@ -2,7 +2,7 @@ import User from "../models/user.model.js";
 import errorhandler from "../utils/errorHandler.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
+const isProduction = process.env.NODE_ENV === "production";
 export const signupController = async (req, res, next) => {
   const { username, email, password } = req.body;
   try {
@@ -30,15 +30,17 @@ export const signinController = async (req, res, next) => {
     if (!isPasswordValid) {
       return next(errorhandler(400, "Wrong credentials!"));
     }
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
     const { password: _, ...userData } = validUser._doc; // Exclude password from user data
+    res.status(200);
     res
-      .status(200)
       .cookie("token", token, {
         httpOnly: true,
-        secure: false, // required for HTTPS
-        sameSite: "Lax",
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        secure: isProduction ? true : false,
+        sameSite: isProduction ? "none" : "lax",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
       })
       .json(userData);
   } catch (error) {
@@ -55,7 +57,12 @@ export const googleController = async (req, res, next) => {
       const { password: _, ...userData } = user._doc; // Exclude password from user data
       return res
         .status(200)
-        .cookie("token", token, { httpOnly: true })
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: isProduction,
+          sameSite: isProduction ? "none" : "lax",
+          maxAge: 7 * 24 * 60 * 60 * 1000,
+        })
         .json(userData);
     } else {
       const newPassword = Math.random().toString(36).slice(-8); // Generate a random password
@@ -71,16 +78,18 @@ export const googleController = async (req, res, next) => {
         profileImage,
       });
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, {
+        expiresIn: "7d",
+      });
       const { password: _, ...userData } = newUser._doc; // Exclude password from user data
       console.log("User signed in successfully with google:", userData);
       res
         .status(200)
-        .cookie("token", token, {
+        .res.cookie("token", token, {
           httpOnly: true,
-          secure: false, // required for HTTPS
-          sameSite: "Lax",
-          maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+          secure: isProduction ? true : false,
+          sameSite: isProduction ? "none" : "lax",
+          maxAge: 7 * 24 * 60 * 60 * 1000,
         })
         .json(userData);
     }
@@ -92,7 +101,11 @@ export const googleController = async (req, res, next) => {
 
 export const signoutController = (req, res, next) => {
   try {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax",
+    });
     res.status(200).json({ message: "User signed out successfully" });
   } catch (error) {
     next(errorhandler(500, error.message));

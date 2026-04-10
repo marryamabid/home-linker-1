@@ -43,6 +43,9 @@ app.use((err, req, res, next) => {
   const message = err.message || "Internal Server Error";
   return res.status(statusCode).json({ message, success: false, statusCode });
 });
+app.get("/", (req, res) => {
+  res.send("hi I am backend");
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
