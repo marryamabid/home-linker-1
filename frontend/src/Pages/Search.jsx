@@ -85,7 +85,7 @@ export default function Search() {
       try {
         const searchQuery = urlParams.toString();
         const response = await fetch(
-          `${API_URL}/api/listing/search?${searchQuery}`,
+          `${API_URL}api/listing/search?${searchQuery}`,
           {
             method: "GET",
             headers: {
